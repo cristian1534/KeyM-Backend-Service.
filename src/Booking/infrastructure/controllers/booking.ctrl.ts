@@ -10,16 +10,21 @@ export class BookingController {
   ) {}
 
   public createBooking = async (
-    { body }: Request,
+    { body, params }: Request,
     res: Response
   ): Promise<any> => {
     try {
+      
       const { error, value } = bookingSchema.validate(body);
+      
       if (error) {
         return this.httpResponse.BadRequest(res, { error: error.message });
       }
-      
-      const bookingCreated = await this.bookingUseCase.addBooking(value);
+      const bookingData = {
+        ...value,
+        userRef: params.name
+      }
+      const bookingCreated = await this.bookingUseCase.addBooking(bookingData);
       return this.httpResponse.Ok(res, bookingCreated);
     } catch (error: any) {
       return this.httpResponse.BadRequest(res, { error: error.message });

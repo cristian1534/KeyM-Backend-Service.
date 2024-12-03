@@ -2,6 +2,7 @@ import { Router } from "express";
 import { MongoRepository } from "../repository/mongo.repository";
 import { BookingUseCase } from "../../application/bookingUseCase";
 import { BookingController } from "../controllers/booking.ctrl";
+import { validateToken } from "../../../User/infrastructure/middleware/auth.validator";
 
 const route = Router();
 
@@ -102,7 +103,7 @@ const bookingCtrl = new BookingController(bookingUseCase);
  *       500:
  *         description: Error while creating booking
  */
-route.post("/", bookingCtrl.createBooking);
+route.post("/", validateToken, bookingCtrl.createBooking);
 /**
  * @swagger
  * /booking:
@@ -118,7 +119,7 @@ route.post("/", bookingCtrl.createBooking);
  *       500:
  *         description: Error when fetching Bookings.
  */
-route.get("/", bookingCtrl.getBookings);
+route.get("/", validateToken, bookingCtrl.getBookings);
 /**
  * @swagger
  * /booking/{uuid}:
@@ -141,7 +142,7 @@ route.get("/", bookingCtrl.getBookings);
  *       500:
  *         description: Error when getting a selected Booking.
  */
-route.get("/:uuid", bookingCtrl.getBookingByUuid);
+route.get("/:uuid", validateToken, bookingCtrl.getBookingByUuid);
 /**
  * @swagger
  * /booking/{uuid}:
@@ -164,7 +165,7 @@ route.get("/:uuid", bookingCtrl.getBookingByUuid);
  *       500:
  *         description: Error when deleting a selected Booking.
  */
-route.delete("/:uuid", bookingCtrl.deleteBookingByUuid);
+route.delete("/:uuid", validateToken, bookingCtrl.deleteBookingByUuid);
 /**
  * @swagger
  * /booking/{uuid}:
@@ -217,6 +218,6 @@ route.delete("/:uuid", bookingCtrl.deleteBookingByUuid);
  *       500:
  *         description: Error when updating booking
  */
-route.patch("/:uuid", bookingCtrl.updateBookingByUuid);
+route.patch("/:uuid", validateToken, bookingCtrl.updateBookingByUuid);
 
 export default route;

@@ -14,10 +14,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    booking: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Booking",
-    },
   },
   { timestamps: true }
 );

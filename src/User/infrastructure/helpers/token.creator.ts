@@ -4,7 +4,7 @@ import { UserEntity } from "../../domain/user.entity";
 import "dotenv/config";
 
 interface Payload {
-  sub: string;
+  user: UserEntity; 
   iat: number;
   exp: number;
 }
@@ -12,7 +12,7 @@ interface Payload {
 export const createToken = (user: UserEntity) => {
   const secretToken: string = process.env.SECRET_TOKEN as string;
   const payload: Payload = {
-    sub: user.uuid,
+    user, 
     iat: moment().unix(),
     exp: moment().add(1, "day").unix(),
   };

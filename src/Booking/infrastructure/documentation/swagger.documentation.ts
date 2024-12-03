@@ -7,7 +7,7 @@ const URL =
     ? "https://votech.onrender.com/"
     : "http://localhost:4000";
 
-``
+``;
 export const options = {
   definition: {
     openapi: "3.0.0",
@@ -23,7 +23,7 @@ export const options = {
     },
     servers: [
       {
-        url: URL ,
+        url: URL,
         description: "Backend NodeJS - TS Hexagonal Structure.",
       },
     ],
@@ -42,5 +42,8 @@ export const options = {
       },
     ],
   },
-  apis: ["./src/Booking/infrastructure/routes/booking.routes.ts"],
+  apis: [
+    "./src/Booking/infrastructure/routes/booking.routes.ts",
+    "./src/User/infrastructure/routes/user.routes.ts",
+  ],
 };

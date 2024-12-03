@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { mongoConnection } from "./Booking/infrastructure/database/mongo";
 import bookingRoutes from "./Booking/infrastructure/routes/booking.routes";
+import userRoutes from "./User/infrastructure/routes/user.routes";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUI from "swagger-ui-express";
 import { options } from "./Booking/infrastructure/documentation/swagger.documentation";
@@ -17,6 +18,7 @@ app.use(morgan("dev"));
 app.use("/api/v1/docs", swaggerUI.serve, swaggerUI.setup(specs));
 
 app.use("/booking", bookingRoutes);
+app.use("/users", userRoutes);
 
 const PORT = process.env.PORT || 4000;
 

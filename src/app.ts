@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import { mongoConnection } from "./infrastructure/database/mongo";
 
 const app = express();
 
@@ -23,3 +24,5 @@ app.listen(PORT, () => {
       ? console.log(`Server running at ${PORT} Development`)
       : console.log(`Server running at ${PORT} Production`);
   });
+
+mongoConnection();

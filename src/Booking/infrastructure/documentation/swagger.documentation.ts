@@ -4,7 +4,7 @@ const nodeEnv = process.env.NODE_ENV;
 
 const URL =
   nodeEnv === "production"
-    ? "https://votech.onrender.com/"
+    ? "https://keym-backend-service.onrender.com"
     : "http://localhost:4000";
 
 ``;

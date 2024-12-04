@@ -1,7 +1,9 @@
+"dotenv/config";
 import { Request, Response } from "express";
 import { BookingUseCase } from "../../application/bookingUseCase";
 import { HttpResponse } from "../error/validation.error";
 import { bookingSchema } from "../helpers/validation.schema";
+import jwt from "jwt-simple";
 
 export class BookingController {
   constructor(
@@ -9,22 +11,34 @@ export class BookingController {
     private readonly httpResponse: HttpResponse = new HttpResponse()
   ) {}
 
-  public createBooking = async (
-    { body, params }: Request,
-    res: Response
-  ): Promise<any> => {
+  public createBooking = async (req: Request, res: Response): Promise<any> => {
     try {
-      
-      const { error, value } = bookingSchema.validate(body);
-      
+      const { error, value } = bookingSchema.validate(req.body);
       if (error) {
         return this.httpResponse.BadRequest(res, { error: error.message });
       }
+
+      const token = req.headers.authorization?.split(" ")[1];
+      if (!token) {
+        return this.httpResponse.BadRequest(res, {
+          error: "Token not provided",
+        });
+      }
+
+      const decode = jwt.decode(
+        token as string,
+        process.env.SECRET_TOKEN as string
+      )
+
+      const userName = decode?.user.name;
+
       const bookingData = {
         ...value,
-        userRef: params.name
-      }
+        user: userName,
+      };
+
       const bookingCreated = await this.bookingUseCase.addBooking(bookingData);
+
       return this.httpResponse.Ok(res, bookingCreated);
     } catch (error: any) {
       return this.httpResponse.BadRequest(res, { error: error.message });
@@ -39,7 +53,6 @@ export class BookingController {
       return this.httpResponse.BadRequest(res, { error: error.message });
     }
   };
-
 
   public getBookingByUuid = async (
     req: Request,

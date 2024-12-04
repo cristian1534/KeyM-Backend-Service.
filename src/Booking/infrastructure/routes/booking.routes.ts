@@ -66,6 +66,8 @@ const bookingCtrl = new BookingController(bookingUseCase);
  *         _id:
  *           type: string
  *           description: MongoDB identifier for the booking
+ *         user:
+ *           
  *         createdAt:
  *           type: string
  *           format: date-time
@@ -80,6 +82,7 @@ const bookingCtrl = new BookingController(bookingUseCase);
  *         startTime: "21:30"
  *         endTime: "22:00"
  *         _id: "674f20e6db0665f2c221a8c2"
+ *         user: Cristian
  *         createdAt: "2024-12-03T15:16:54.336Z"
  *         updatedAt: "2024-12-03T15:16:54.336Z"
  *

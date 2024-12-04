@@ -28,3 +28,5 @@ app.listen(PORT, () => {
     : console.log(`Server running at ${PORT} Production`);
 });
 mongoConnection();
+
+export default app;

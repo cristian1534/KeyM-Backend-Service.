@@ -21,6 +21,7 @@ export class BookingUseCase {
         { startTime: { $gte: startTime }, endTime: { $lte: endTime } },
       ],
     });
+    
 
     if (alreadyBooking) {
       throw new Error("This time is busy for another Booking");
@@ -39,7 +40,7 @@ export class BookingUseCase {
     return bookings;
   }
 
-  public async getBookingByUuid(uuid: string): Promise<BookingEntity | null> {
+  public async getBookingByUuid(uuid: string): Promise<any> {
     const booking = await this.bookingRepository.getBookingByUuid(uuid);
     return booking;
   }

@@ -15,7 +15,7 @@ export class MongoRepository implements BookingRepository {
   }
 
   async getBookingByUuid(uuid: string): Promise<any> {
-    const booking = Booking.findOne({ uuid: uuid });
+    const booking = await Booking.findOne({ uuid }).exec();
     return booking;
   }
 

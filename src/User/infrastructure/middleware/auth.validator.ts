@@ -21,8 +21,7 @@ export function validateToken(req: Request, res: Response, next: NextFunction){
       httpResponse.BadRequest(res, "Permission expired"); 
       return;
     }
-    req.params = payload.user;
-
+    payload.user;
     next(); 
   } catch (error) {
     httpResponse.BadRequest(res, "Invalid token"); 

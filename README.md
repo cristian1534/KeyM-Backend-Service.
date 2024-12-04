@@ -3,7 +3,8 @@
 ![Cover Image](https://res.cloudinary.com/dutafv5us/image/upload/v1731100643/ublxlvjyebbjzvpmce1i.png)
 
 ## 🌐 Project Description
-**Country Project** is a full-stack application designed for visualizing and interacting with country data. Built with **Next.js** for the frontend and **Node.js** with **Express** for the backend, this project follows a microservices architecture managed through **Docker**.
+**Booking Services** Backend with NodeJs, Express and Mongo. Testing done with Jest. Typescript with Hexagonal Infrastructure. REST API deployed with 
+documentation in Swagger **Docker**.
 
 ## 🛠️ Technologies Used
 - **Frontend**
